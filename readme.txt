@@ -23,6 +23,24 @@ Son códigos que usan para tener una traza de un posible error con el plugin. Es
 Este es un problema de relacionado a la autenticación con Fpay. Debe validar y/o volver a configurar las credenciales obtenidas desde el portal Fpay de comercios en la sección Configuración apartado de Credenciales.
 
 == Changelog ==
+= 2.5.3 =
+* Se mueve la logica que captura alguna excepción del cliente guzzle y se crea una nueva excepción FpayHttpClientException para no tener ligado el paquete a la logica del plugin.
+= 2.5.2 =
+* Se soluciona el problema de incompatibilidad con otras versiones de la misma dependencia con otros plugins.
+* Se agrega el paquete brianhenryie/strauss para sobreescribir el namespace de las dependencias que podrian generar conflictos.
+
+= 2.5.1 =
+* Se soluciona un problema por la diferencia de datos que responde la Api de Fpay en Perú.
+* Se agrega el metodo sanitize requerido por Wordpress.
+
+= 2.5.0 =
+* Se agrega la validación cuando una moneda, pais no son soportados. El plugin no se podrá activar si la tienda NO tiene un pais, moneda soportado por Fpay.
+* Se agrega el código de error "FpayWoocommerceError-017" cuando un usuario de la tienda intenta pagar con Fpay y la tienda modifico las configuraciones de moneda y pais soportadas por Fpay.
+* Se crea la clase HttpClient la cual es un envoltorio a la clase Client de Guzzle para tener un mejor manejo de los headers y otras configuraciones necesarias para el cliente http del plugin.
+* Se construye la clase CountryManager dedica a manejar la lógica relacionada a la configuración de países y monedas que usa el plugin de Fpay.
+
+= 2.4.3 =
+* Se solventa un problema que no redirigia correctamente cuando el webhook habia sido llamado previamente.
 = 2.4.2 =
 * Se agrega el método "sanitize" de Wordpress para las llamadas que vienen de los endpoints en el plugin.
 * Se traslada la lógica de entrada de los webhooks a una nueva clase llamada WebhookController.
